@@ -11,7 +11,7 @@ part 'subject_state.dart';
 
 class SubjectBloc extends Bloc<SubjectEvent, SubjectState> {
   final GetAllSubjectsUsecase _getAllSubjectsUsecase;
-  List<SubjectEntity> _listSubjects = [];
+  final List<SubjectEntity> _listSubjects = [];
 
   SubjectBloc(this._getAllSubjectsUsecase) : super(SubjectInitial()) {
     on<FetchAllSubjects>(_fetchAllSubjects);

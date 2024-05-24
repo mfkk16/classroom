@@ -1,4 +1,6 @@
+import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
+import 'package:classroom/domain/usecases/get_all_students_usecase.dart';
 import 'package:classroom/domain/usecases/get_all_subjects_usecase.dart';
 import 'package:classroom/infrastructure/network_repi_impli.dart';
 import 'package:classroom/infrastructure/network_repo.dart';
@@ -12,7 +14,9 @@ Future<void> initializeDependencies() async {
 
   // Usecases
   sl.registerSingleton<GetAllSubjectsUsecase>(GetAllSubjectsUsecase(sl()));
+  sl.registerSingleton<GetAllStudentsUsecase>(GetAllStudentsUsecase(sl()));
 
   // Bloc Classes
   sl.registerLazySingleton<SubjectBloc>(() => SubjectBloc(sl()));
+  sl.registerLazySingleton<StudentBloc>(() => StudentBloc(sl()));
 }

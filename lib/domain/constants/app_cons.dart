@@ -4,4 +4,5 @@ class AppCons {
   static const String apiKey = "a4AAE";
 
   static const String subjectFetchApi = "/subjects";
+  static const String studentsFetchApi = "/students";
 }

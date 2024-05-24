@@ -1,3 +1,4 @@
+import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
 import 'package:classroom/dependency_injection.dart';
 import 'package:classroom/domain/config/route/routes_constants.dart';
@@ -14,6 +15,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<SubjectBloc>(
             create: (context) => sl()..add(FetchAllSubjects())),
+        BlocProvider<StudentBloc>(
+            create: (context) => sl()..add(FetchAllStudents())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         ),
       ),
     );
