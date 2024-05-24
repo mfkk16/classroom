@@ -10,7 +10,7 @@ part 'student_event.dart';
 part 'student_state.dart';
 
 class StudentBloc extends Bloc<StudentEvent, StudentState> {
-  GetAllStudentsUsecase _getAllStudentsUsecase;
+  final GetAllStudentsUsecase _getAllStudentsUsecase;
   final List<StudentEntity> _listStudents = [];
 
   StudentBloc(this._getAllStudentsUsecase) : super(StudentInitial()) {

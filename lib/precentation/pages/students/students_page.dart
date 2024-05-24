@@ -18,7 +18,8 @@ class StudentsPage extends StatelessWidget {
   _body() {
     return Column(
       children: [
-        const Text("Students"),
+        const Text("Students",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         Expanded(child: _blockBuilder()),
       ],
     );
@@ -55,7 +56,7 @@ class StudentsPage extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           subtitle: Text(item.email!),
-          trailing:  Text("Age : ${item.age!}"),
+          trailing: Text("Age : ${item.age!}"),
         );
       },
     );

@@ -1,3 +1,4 @@
+import 'package:classroom/application/classrooms/classrooms_bloc.dart';
 import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
 import 'package:classroom/dependency_injection.dart';
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
             create: (context) => sl()..add(FetchAllSubjects())),
         BlocProvider<StudentBloc>(
             create: (context) => sl()..add(FetchAllStudents())),
+        BlocProvider<ClassroomsBloc>(
+            create: (context) => sl()..add(FetchAllClassrooms())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
