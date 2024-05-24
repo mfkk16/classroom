@@ -38,7 +38,7 @@ List<HomeItem> homeItems = [
     iconString: AssetsConst.classroom,
     bgColor: ColorCont.redLight,
     iconColor: ColorCont.redDark,
-    rootName: subjectsPage,
+    rootName: classroomsPage,
   ),
   HomeItem(
     name: "Registration",
