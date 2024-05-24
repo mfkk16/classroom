@@ -74,20 +74,23 @@ class _LandingPageState extends State<LandingPage> {
       itemBuilder: (context, index) {
         var item = homeItems[index];
 
-        return Card(
-          color: item.bgColor,
-          child: Center(
+        return InkWell(
+          onTap: () => Navigator.pushNamed(context, item.rootName),
+          child: Card(
+            color: item.bgColor,
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ImageIcon(AssetImage(item.iconString),
-                      size: 40, color: item.iconColor),
-                  const SizedBox(height: 10),
-                  Text(item.name,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
-                ],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(AssetImage(item.iconString),
+                        size: 40, color: item.iconColor),
+                    const SizedBox(height: 10),
+                    Text(item.name,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ),
             ),
           ),
@@ -102,14 +105,17 @@ class _LandingPageState extends State<LandingPage> {
       separatorBuilder: (context, index) => SizedBox(height: 20),
       itemBuilder: (context, index) {
         var item = homeItems[index];
-        return Card(
-          color: item.bgColor,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(item.name,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold)),
+        return InkWell(
+          onTap: () => Navigator.pushNamed(context, item.rootName),
+          child: Card(
+            color: item.bgColor,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(item.name,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold)),
+              ),
             ),
           ),
         );
