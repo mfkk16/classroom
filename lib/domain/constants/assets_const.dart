@@ -12,4 +12,6 @@ class AssetsConst {
 
   static const String profile = "assets/images/profile.png";
   static const String subjects = "assets/images/subjects.jpeg";
+
+  static const String logo = "assets/logo/classroom.png";
 }
