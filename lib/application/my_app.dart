@@ -1,3 +1,4 @@
+import 'package:classroom/application/classroom_details/classroom_details_bloc.dart';
 import 'package:classroom/application/classrooms/classrooms_bloc.dart';
 import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
             create: (context) => sl()..add(FetchAllStudents())),
         BlocProvider<ClassroomsBloc>(
             create: (context) => sl()..add(FetchAllClassrooms())),
+        BlocProvider<ClassroomDetailsBloc>(create: (context) => sl()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

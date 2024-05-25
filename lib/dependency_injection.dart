@@ -1,3 +1,4 @@
+import 'package:classroom/application/classroom_details/classroom_details_bloc.dart';
 import 'package:classroom/application/classrooms/classrooms_bloc.dart';
 import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
@@ -26,6 +27,7 @@ Future<void> initializeDependencies() async {
   // Bloc Classes
   sl.registerLazySingleton<SubjectBloc>(() => SubjectBloc(sl()));
   sl.registerLazySingleton<StudentBloc>(() => StudentBloc(sl()));
-  sl.registerLazySingleton<ClassroomsBloc>(
-      () => ClassroomsBloc(sl(), sl(), sl()));
+  sl.registerLazySingleton<ClassroomsBloc>(() => ClassroomsBloc(sl()));
+  sl.registerLazySingleton<ClassroomDetailsBloc>(
+      () => ClassroomDetailsBloc(sl(), sl()));
 }
