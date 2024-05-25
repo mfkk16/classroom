@@ -25,7 +25,7 @@ class RegistrationsPage extends StatelessWidget {
       child: Column(
         children: [
           const Text("Registration", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          Expanded(child: _blockBuilder()),
+          Expanded(child: _blockBuilder(context)),
           _newRegButton(context),
         ],
       ),
@@ -48,7 +48,7 @@ class RegistrationsPage extends StatelessWidget {
     );
   }
 
-  Widget _blockBuilder() {
+  Widget _blockBuilder(contextMain) {
     return BlocBuilder<RegistrationBloc, RegistrationState>(
       builder: (context, state) {
         if (state is RegLoadedState) {
@@ -64,7 +64,11 @@ class RegistrationsPage extends StatelessWidget {
     );
   }
 
-  ListView _listBuilder(RegLoadedState state) {
+  Widget _listBuilder(RegLoadedState state) {
+    if (state.listRegistrations.isEmpty) {
+      return const Center(child: Text("No Data", style: TextStyle(fontSize: 18)));
+    }
+
     return ListView.separated(
       separatorBuilder: (context, index) => const SizedBox(height: 10),
       itemCount: state.listRegistrations.length,

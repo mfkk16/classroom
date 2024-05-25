@@ -1,6 +1,7 @@
 import 'package:classroom/application/subject/subject_bloc.dart';
 import 'package:classroom/domain/config/route/routes_constants.dart';
 import 'package:classroom/domain/constants/color_cont.dart';
+import 'package:classroom/precentation/widgets/error_tryagain_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,8 +34,8 @@ class SubjectsPage extends StatelessWidget {
         } else if (state is LoadingState) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return const Center(
-            child: Text("Something wrong"),
+          return ErrorTryagainWidget(
+            onPressed: () => BlocProvider.of<SubjectBloc>(context).add(FetchAllSubjects()),
           );
         }
       },

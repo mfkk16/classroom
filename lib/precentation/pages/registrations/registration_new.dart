@@ -33,15 +33,27 @@ class RegistrationNew extends StatelessWidget {
           const SizedBox(height: 10),
           _selectSubject(registrationNewBloc, context),
           const SizedBox(height: 20),
-          ElevatedButton(
+          _registerButton(registrationNewBloc, context),
+        ],
+      ),
+    );
+  }
+
+  Widget _registerButton(RegistrationNewBloc registrationNewBloc, context) {
+    return BlocBuilder<RegistrationNewBloc, RegistrationNewState>(
+      builder: (context, state) {
+        if (state is LoadingRegistrationNew) {
+          return const Center(child: const CircularProgressIndicator());
+        } else {
+          return ElevatedButton(
             onPressed: () {
               registrationNewBloc.add(Register(context: context));
             },
             style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)), backgroundColor: ColorCont.greenLight),
             child: const Text("Register", style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
+          );
+        }
+      },
     );
   }
 

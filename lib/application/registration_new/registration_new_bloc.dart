@@ -34,7 +34,7 @@ class RegistrationNewBloc extends Bloc<RegistrationNewEvent, RegistrationNewStat
       emit(ErrorRegNew(error: "Student or Subject is missing"));
       return;
     }
-
+    emit(LoadingRegistrationNew());
     var res = await _newRegistrationUsecase(params: RegistrationUpdate(studentId: studentEntity!.id!, subjectId: subjectEntity!.id!));
     if (res is DataSuccess && res.data == true) {
       Navigator.pop(event.context, true);

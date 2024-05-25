@@ -1,8 +1,7 @@
-import 'package:classroom/domain/constants/color_cont.dart';
 import 'package:flutter/material.dart';
 
 class ErrorTryagainWidget extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   const ErrorTryagainWidget({super.key, required this.onPressed});
 
@@ -15,7 +14,7 @@ class ErrorTryagainWidget extends StatelessWidget {
           const Text("Something wrong", style: TextStyle(fontSize: 18)),
           const SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () => onPressed,
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)), backgroundColor: Colors.red[50]),
             child: const Text("Try Again", style: TextStyle(color: Colors.red)),
           ),

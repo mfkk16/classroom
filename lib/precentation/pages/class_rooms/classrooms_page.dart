@@ -1,6 +1,7 @@
 import 'package:classroom/application/classrooms/classrooms_bloc.dart';
 import 'package:classroom/domain/config/route/routes_constants.dart';
 import 'package:classroom/domain/constants/color_cont.dart';
+import 'package:classroom/precentation/widgets/error_tryagain_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,8 +19,7 @@ class ClassroomsPage extends StatelessWidget {
   _body() {
     return Column(
       children: [
-        const Text("Class Rooms",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+        const Text("Class Rooms", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         Expanded(child: _blockBuilder()),
       ],
     );
@@ -33,8 +33,8 @@ class ClassroomsPage extends StatelessWidget {
         } else if (state is LoadingState) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return const Center(
-            child: Text("Something wrong"),
+          return ErrorTryagainWidget(
+            onPressed: () => BlocProvider.of<ClassroomsBloc>(context).add(FetchAllClassrooms()),
           );
         }
       },
@@ -49,12 +49,10 @@ class ClassroomsPage extends StatelessWidget {
       itemBuilder: (context, index) {
         var item = state.list[index];
         return ListTile(
-          onTap: () => Navigator.pushNamed(context, classroomDetailsPage,
-              arguments: item),
+          onTap: () => Navigator.pushNamed(context, classroomDetailsPage, arguments: item),
           tileColor: ColorCont.grey,
           title: Text(item.name!),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           subtitle: Text(item.layout!),
           trailing: Column(
             mainAxisSize: MainAxisSize.min,

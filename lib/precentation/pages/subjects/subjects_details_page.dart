@@ -18,22 +18,18 @@ class SubjectsDetailsPage extends StatelessWidget {
   _body() {
     return Column(
       children: [
-        const Text("Subject Detail",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+        const Text("Subject Detail", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         Expanded(
             child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.asset(AssetsConst.subjects,
-                      fit: BoxFit.cover, height: 100, width: 100)),
-              SizedBox(height: 15),
-              Text(subjectEntity.name!, style: TextStyle(fontSize: 18)),
-              Text(subjectEntity.teacher!, style: TextStyle(fontSize: 18)),
+              ClipRRect(borderRadius: BorderRadius.circular(100), child: Image.asset(AssetsConst.subjects, fit: BoxFit.cover, height: 100, width: 100)),
+              const SizedBox(height: 15),
+              Text(subjectEntity.name!, style: const TextStyle(fontSize: 18)),
+              Text(subjectEntity.teacher!, style: const TextStyle(fontSize: 18)),
               Text("Credit : ${subjectEntity.name!}"),
-              SizedBox(height: 70),
+              const SizedBox(height: 70),
             ],
           ),
         )),
