@@ -1,4 +1,5 @@
 import 'package:classroom/application/classrooms/classrooms_bloc.dart';
+import 'package:classroom/domain/config/route/routes_constants.dart';
 import 'package:classroom/domain/constants/color_cont.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,8 @@ class ClassroomsPage extends StatelessWidget {
       itemBuilder: (context, index) {
         var item = state.list[index];
         return ListTile(
+          onTap: () => Navigator.pushNamed(context, classroomDetailsPage,
+              arguments: item),
           tileColor: ColorCont.grey,
           title: Text(item.name!),
           shape:

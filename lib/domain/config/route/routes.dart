@@ -1,8 +1,10 @@
 import 'package:classroom/Precentation/Pages/landing_page.dart';
 import 'package:classroom/Precentation/Widgets/undefined_view.dart';
 import 'package:classroom/domain/config/route/routes_constants.dart';
+import 'package:classroom/domain/core/entity/classroom_entity.dart';
 import 'package:classroom/domain/core/entity/students_entity.dart';
 import 'package:classroom/domain/core/entity/subject_entity.dart';
+import 'package:classroom/precentation/pages/class_rooms/classroom_details_page.dart';
 import 'package:classroom/precentation/pages/class_rooms/classrooms_page.dart';
 import 'package:classroom/precentation/pages/registrations/registrations_page.dart';
 import 'package:classroom/precentation/pages/students/students_details_page.dart';
@@ -32,6 +34,10 @@ Route<dynamic> generateRoutes(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => StudentsDetailsPage(
               studentEntity: settings.arguments as StudentEntity));
+    case classroomDetailsPage:
+      return MaterialPageRoute(
+          builder: (context) => ClassroomDetailsPage(
+              classroomEntity: settings.arguments as ClassroomEntity));
 
     default:
       return MaterialPageRoute(

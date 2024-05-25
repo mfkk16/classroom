@@ -7,5 +7,6 @@ const String subjectsPage = "/subjectsLanding";
 const String subjectDetailsPage = "/subjectDetailsPage";
 
 const String classroomsPage = "/classroomsLanding";
+const String classroomDetailsPage = "/classroomDetailsPage";
 
 const String registrationsPage = "/registrationsLanding";

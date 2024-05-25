@@ -7,4 +7,7 @@ abstract class NetworkRepo {
   Future<DataState<List<SubjectEntity>>> getSubjects();
   Future<DataState<List<StudentEntity>>> getStudents();
   Future<DataState<List<ClassroomEntity>>> getClassrooms();
+
+  Future<DataState<SubjectEntity>> getSubjectBtId(int id);
+  Future<DataState<ClassroomEntity>> getClassroomById(int id);
 }

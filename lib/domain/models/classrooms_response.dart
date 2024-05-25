@@ -29,16 +29,17 @@ class ClassroomsResponse {
 class Classroom extends ClassroomEntity {
   Classroom({
     super.id,
-    super.name,
     super.layout,
+    super.name,
     super.size,
+    super.subject,
   });
-
   factory Classroom.fromJson(Map<String, dynamic> json) => Classroom(
         id: json["id"],
         layout: json["layout"],
         name: json["name"],
         size: json["size"],
+        subject: json["subject"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,5 +47,6 @@ class Classroom extends ClassroomEntity {
         "layout": layout,
         "name": name,
         "size": size,
+        "subject": subject,
       };
 }

@@ -76,4 +76,42 @@ class NetworkRepoImpli implements NetworkRepo {
       return DataFailed(DataError(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<DataState<ClassroomEntity>> getClassroomById(int id) async {
+    try {
+      Response<dynamic> response = await _dio.get(
+          "${AppCons.classroomsFetchApi}/$id?api_key=${AppCons.apiKey}",
+          cancelToken: _cancelToken);
+      if (response.statusCode == 200) {
+        Classroom data = Classroom.fromJson(response.data);
+        return DataSuccess(data);
+      } else {
+        return DataFailed(DataError(
+            errorMessage:
+                'Failed to fetch Classrooms. Status code: ${response.statusCode}'));
+      }
+    } catch (e) {
+      return DataFailed(DataError(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<DataState<SubjectEntity>> getSubjectBtId(int id) async {
+    try {
+      Response<dynamic> response = await _dio.get(
+          "${AppCons.subjectFetchApi}/$id?api_key=${AppCons.apiKey}",
+          cancelToken: _cancelToken);
+      if (response.statusCode == 200) {
+        Subject data = Subject.fromJson(response.data);
+        return DataSuccess(data);
+      } else {
+        return DataFailed(DataError(
+            errorMessage:
+                'Failed to fetch Subject. Status code: ${response.statusCode}'));
+      }
+    } catch (e) {
+      return DataFailed(DataError(errorMessage: e.toString()));
+    }
+  }
 }
