@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:classroom/application/registration_details/registration_details_bloc.dart';
 import 'package:classroom/domain/constants/color_cont.dart';
 import 'package:classroom/domain/core/entity/registration_entity.dart';
 import 'package:classroom/precentation/widgets/error_tryagain_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
