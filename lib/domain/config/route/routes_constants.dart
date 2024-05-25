@@ -10,3 +10,5 @@ const String classroomsPage = "/classroomsLanding";
 const String classroomDetailsPage = "/classroomDetailsPage";
 
 const String registrationsPage = "/registrationsLanding";
+const String registrationDetailsPage = "/registrationDetailsPage";
+const String registrationNewPage = "/registrationNewPage";

@@ -6,4 +6,5 @@ class AppCons {
   static const String subjectFetchApi = "/subjects";
   static const String studentsFetchApi = "/students";
   static const String classroomsFetchApi = "/classrooms";
+  static const String registrationFetchApi = "/registration";
 }

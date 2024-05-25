@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubjectsPage extends StatelessWidget {
-  SubjectsPage({super.key, this.isSelection = false});
-  bool isSelection;
+  const SubjectsPage({super.key, this.isSelection = false});
+  final bool isSelection;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,7 @@ class SubjectsPage extends StatelessWidget {
   _body() {
     return Column(
       children: [
-        const Text("Subjects",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+        const Text("Subjects", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         Expanded(child: _blockBuilder()),
       ],
     );
@@ -59,8 +58,7 @@ class SubjectsPage extends StatelessWidget {
           },
           tileColor: ColorCont.grey,
           title: Text(item.name!),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           subtitle: Text(item.teacher!),
           trailing: Column(
             mainAxisSize: MainAxisSize.min,

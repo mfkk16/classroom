@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StudentsPage extends StatelessWidget {
-  const StudentsPage({super.key});
+  const StudentsPage({super.key, this.isSelection = false});
+  final bool isSelection;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,7 @@ class StudentsPage extends StatelessWidget {
   _body() {
     return Column(
       children: [
-        const Text("Students",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+        const Text("Students", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         Expanded(child: _blockBuilder()),
       ],
     );
@@ -43,18 +43,22 @@ class StudentsPage extends StatelessWidget {
 
   ListView _listBuilder(StudentsLoadedState state) {
     return ListView.separated(
-      separatorBuilder: (context, index) => SizedBox(height: 10),
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
       itemCount: state.list.length,
       padding: const EdgeInsets.all(15),
       itemBuilder: (context, index) {
         var item = state.list[index];
         return ListTile(
-          onTap: () => Navigator.pushNamed(context, studentsDetailsPage,
-              arguments: item),
+          onTap: () {
+            if (isSelection) {
+              Navigator.pop(context, item);
+            } else {
+              Navigator.pushNamed(context, studentsDetailsPage, arguments: item);
+            }
+          },
           tileColor: ColorCont.grey,
           title: Text(item.name!),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           subtitle: Text(item.email!),
           trailing: Text("Age : ${item.age!}"),
         );

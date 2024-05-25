@@ -1,5 +1,8 @@
 import 'package:classroom/application/classroom_details/classroom_details_bloc.dart';
 import 'package:classroom/application/classrooms/classrooms_bloc.dart';
+import 'package:classroom/application/registration/registration_bloc.dart';
+import 'package:classroom/application/registration_details/registration_details_bloc.dart';
+import 'package:classroom/application/registration_new/registration_new_bloc.dart';
 import 'package:classroom/application/student/student_bloc.dart';
 import 'package:classroom/application/subject/subject_bloc.dart';
 import 'package:classroom/dependency_injection.dart';
@@ -15,13 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SubjectBloc>(
-            create: (context) => sl()..add(FetchAllSubjects())),
-        BlocProvider<StudentBloc>(
-            create: (context) => sl()..add(FetchAllStudents())),
-        BlocProvider<ClassroomsBloc>(
-            create: (context) => sl()..add(FetchAllClassrooms())),
+        BlocProvider<SubjectBloc>(create: (context) => sl()..add(FetchAllSubjects())),
+        BlocProvider<RegistrationBloc>(create: (context) => sl()..add(FetchRegistrations())),
+        BlocProvider<StudentBloc>(create: (context) => sl()..add(FetchAllStudents())),
+        BlocProvider<ClassroomsBloc>(create: (context) => sl()..add(FetchAllClassrooms())),
         BlocProvider<ClassroomDetailsBloc>(create: (context) => sl()),
+        BlocProvider<RegistrationDetailsBloc>(create: (context) => sl()),
+        BlocProvider<RegistrationNewBloc>(create: (context) => sl()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

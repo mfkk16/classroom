@@ -14,10 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'classroom_details_event.dart';
 part 'classroom_details_state.dart';
 
-class ClassroomDetailsBloc
-    extends Bloc<ClassroomDetailsEvent, ClassroomDetailsState> {
+class ClassroomDetailsBloc extends Bloc<ClassroomDetailsEvent, ClassroomDetailsState> {
   final GetClassroomByIdUsecase _getClassroomByIdUsecase;
-  final GetSubjectBtIdUsecase _getSubjectBtIdUsecase;
+  final GetSubjectByIdUsecase _getSubjectBtIdUsecase;
   final SetClassroomSubjectUsecase _setClassroomSubjectUsecase;
   ClassroomEntity? selectedClassroom;
   SubjectEntity? selectedSubject;
@@ -31,34 +30,25 @@ class ClassroomDetailsBloc
     on<AddSubjectIntoClassroom>(addSubjectIntoClassroom);
   }
 
-  FutureOr<void> fetchClassroomByIdEvent(FetchClassroomByIdEvent event,
-      Emitter<ClassroomDetailsState> emit) async {
+  FutureOr<void> fetchClassroomByIdEvent(FetchClassroomByIdEvent event, Emitter<ClassroomDetailsState> emit) async {
     emit(LoadingSubjectState());
     selectedSubject = null;
     selectedClassroom = null;
     final res = await _getClassroomByIdUsecase(params: event.classroomId);
     selectedClassroom = res.data!;
     if (selectedClassroom!.subject is int) {
-      final resSubject =
-          await _getSubjectBtIdUsecase(params: selectedClassroom!.subject);
+      final resSubject = await _getSubjectBtIdUsecase(params: selectedClassroom!.subject);
       selectedSubject = resSubject.data!;
-      emit(ClassroomDetailsLoadedState(
-          classroomEntity: selectedClassroom!,
-          subjectEntity: selectedSubject!));
+      emit(ClassroomDetailsLoadedState(classroomEntity: selectedClassroom!, subjectEntity: selectedSubject!));
     } else {
-      emit(ClassroomDetailsLoadedState(
-          classroomEntity: selectedClassroom!, subjectEntity: null));
+      emit(ClassroomDetailsLoadedState(classroomEntity: selectedClassroom!, subjectEntity: null));
     }
   }
 
-  FutureOr<void> addSubjectIntoClassroom(AddSubjectIntoClassroom event,
-      Emitter<ClassroomDetailsState> emit) async {
-    var res =
-        await Navigator.pushNamed(event.context, subjectsPage, arguments: true)
-            as SubjectEntity;
+  FutureOr<void> addSubjectIntoClassroom(AddSubjectIntoClassroom event, Emitter<ClassroomDetailsState> emit) async {
+    var res = await Navigator.pushNamed(event.context, subjectsPage, arguments: true) as SubjectEntity;
 
-    ClassroomUpdate data = ClassroomUpdate(
-        subjectId: res.id!, classroomId: selectedClassroom!.id!);
+    ClassroomUpdate data = ClassroomUpdate(subjectId: res.id!, classroomId: selectedClassroom!.id!);
 
     emit(LoadingSubjectState());
 
@@ -67,8 +57,7 @@ class ClassroomDetailsBloc
     if (resUpdate is DataSuccess) {
       add(FetchClassroomByIdEvent(classroomId: resUpdate.data!.id!));
     } else {
-      emit(ClassroomDetailsLoadedState(
-          classroomEntity: selectedClassroom!, subjectEntity: null));
+      emit(ClassroomDetailsLoadedState(classroomEntity: selectedClassroom!, subjectEntity: null));
     }
   }
 }

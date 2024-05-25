@@ -45,10 +45,7 @@ class _LandingPageState extends State<LandingPage> {
             text: const TextSpan(
               style: TextStyle(color: ColorCont.black),
               children: [
-                TextSpan(
-                    text: "Hello,",
-                    style:
-                        TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                TextSpan(text: "Hello,", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 TextSpan(text: "\n"),
                 TextSpan(text: "Good Morning", style: TextStyle(fontSize: 17)),
               ],
@@ -68,14 +65,13 @@ class _LandingPageState extends State<LandingPage> {
 
   Widget _buildGridView() {
     return GridView.builder(
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemCount: homeItems.length,
       itemBuilder: (context, index) {
         var item = homeItems[index];
 
         return InkWell(
-          onTap: () => Navigator.pushNamed(context, item.rootName),
+          onTap: () => Navigator.pushNamed(context, item.rootName, arguments: false),
           child: Card(
             color: item.bgColor,
             child: Center(
@@ -83,12 +79,9 @@ class _LandingPageState extends State<LandingPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ImageIcon(AssetImage(item.iconString),
-                        size: 40, color: item.iconColor),
+                    ImageIcon(AssetImage(item.iconString), size: 40, color: item.iconColor),
                     const SizedBox(height: 10),
-                    Text(item.name,
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(item.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -112,9 +105,7 @@ class _LandingPageState extends State<LandingPage> {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text(item.name,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold)),
+                child: Text(item.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ),
             ),
           ),

@@ -17,8 +17,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<FetchAllStudents>(fetchAllStudents);
   }
 
-  FutureOr<void> fetchAllStudents(
-      FetchAllStudents event, Emitter<StudentState> emit) async {
+  FutureOr<void> fetchAllStudents(FetchAllStudents event, Emitter<StudentState> emit) async {
     emit(LoadingState());
     final res = await _getAllStudentsUsecase();
 
