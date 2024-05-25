@@ -20,7 +20,9 @@ Route<dynamic> generateRoutes(RouteSettings settings) {
     case studentsPage:
       return MaterialPageRoute(builder: (context) => const StudentsPage());
     case subjectsPage:
-      return MaterialPageRoute(builder: (context) => const SubjectsPage());
+      return MaterialPageRoute(
+          builder: (context) =>
+              SubjectsPage(isSelection: settings.arguments as bool));
     case classroomsPage:
       return MaterialPageRoute(builder: (context) => const ClassroomsPage());
     case registrationsPage:

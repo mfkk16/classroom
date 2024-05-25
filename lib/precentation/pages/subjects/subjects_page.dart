@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubjectsPage extends StatelessWidget {
-  const SubjectsPage({super.key});
+  SubjectsPage({super.key, this.isSelection = false});
+  bool isSelection;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +50,13 @@ class SubjectsPage extends StatelessWidget {
       itemBuilder: (context, index) {
         var item = state.list[index];
         return ListTile(
-          onTap: () =>
-              Navigator.pushNamed(context, subjectDetailsPage, arguments: item),
+          onTap: () {
+            if (isSelection) {
+              Navigator.pop(context, item);
+            } else {
+              Navigator.pushNamed(context, subjectDetailsPage, arguments: item);
+            }
+          },
           tileColor: ColorCont.grey,
           title: Text(item.name!),
           shape:

@@ -14,7 +14,7 @@ class ClassroomDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<ClassroomDetailsBloc>(context)
-        .add(FetchClassroomByIdEvent(id: classroomEntity.id!));
+        .add(FetchClassroomByIdEvent(classroomId: classroomEntity.id!));
     return Scaffold(
       appBar: AppBar(),
       body: _body(context),
@@ -51,7 +51,9 @@ class ClassroomDetailsPage extends StatelessWidget {
                     title: Text(state.subjectEntity!.name!),
                     subtitle: Text(state.subjectEntity!.teacher!),
                     trailing: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          BlocProvider.of<ClassroomDetailsBloc>(context)
+                              .add(AddSubjectIntoClassroom(context: context)),
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
@@ -66,7 +68,9 @@ class ClassroomDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                     title: const Text("Add Subject"),
                     trailing: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          BlocProvider.of<ClassroomDetailsBloc>(context)
+                              .add(AddSubjectIntoClassroom(context: context)),
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),

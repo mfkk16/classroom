@@ -10,13 +10,15 @@ class ConferenceBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      padding: const EdgeInsets.all(10),
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemCount: count,
       itemBuilder: (context, index) {
         return Container(
+          margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(border: Border.all(color: ColorCont.black)),
-          child: const ImageIcon(AssetImage(AssetsConst.sitLeft)),
+          child: const ImageIcon(AssetImage(AssetsConst.sitRight)),
         );
       },
     );

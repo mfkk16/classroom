@@ -6,6 +6,7 @@ import 'package:classroom/domain/core/entity/students_entity.dart';
 import 'package:classroom/domain/core/entity/subject_entity.dart';
 import 'package:classroom/domain/core/resource/data_exception.dart';
 import 'package:classroom/domain/core/resource/data_state.dart';
+import 'package:classroom/domain/models/classroom_update.dart';
 import 'package:classroom/domain/models/classrooms_response.dart';
 import 'package:classroom/domain/models/students_response.dart';
 import 'package:classroom/domain/models/subjects_response.dart';
@@ -109,6 +110,31 @@ class NetworkRepoImpli implements NetworkRepo {
         return DataFailed(DataError(
             errorMessage:
                 'Failed to fetch Subject. Status code: ${response.statusCode}'));
+      }
+    } catch (e) {
+      return DataFailed(DataError(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<DataState<ClassroomEntity>> updateClassroomSubject(
+      ClassroomUpdate data) async {
+    try {
+      final options = Options(contentType: Headers.formUrlEncodedContentType);
+
+      Response<dynamic> response = await _dio.patch(
+        "${AppCons.classroomsFetchApi}/${data.classroomId}?api_key=${AppCons.apiKey}",
+        cancelToken: _cancelToken,
+        data: {"subject": data.subjectId},
+        options: options,
+      );
+      if (response.statusCode == 200) {
+        Classroom data = Classroom.fromJson(response.data);
+        return DataSuccess(data);
+      } else {
+        return DataFailed(DataError(
+            errorMessage:
+                'Failed to update Subject. Status code: ${response.statusCode}'));
       }
     } catch (e) {
       return DataFailed(DataError(errorMessage: e.toString()));
